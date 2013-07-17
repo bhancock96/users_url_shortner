@@ -31,7 +31,8 @@ post '/login' do
 end
 
 get '/users/:id' do
-
+  @user = User.find(params[:id])
+  @urls = @user.urls
   # display user infomration 
   # links to my link information pages
   erb :user
@@ -39,6 +40,6 @@ end
 
 get '/logout' do
   session[:id] = nil
-  
+
   redirect '/login'
 end

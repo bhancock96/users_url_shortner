@@ -1,5 +1,10 @@
 
 <a href="/logout">Logout</a>
 
+<ul>
+  <% @urls.each do |url| %>
+  <li><a href="/<%= url.short_url %>"><%= url.short_url %>  - <%= url.click_count %></a></li>
+  <% end %>
+</ul>
 
 <%= erb :index, default: false %>
