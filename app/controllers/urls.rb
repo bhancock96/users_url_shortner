@@ -1,5 +1,5 @@
 post '/urls' do
-  url = Url.create(url: params[:url], click_count: 0)
+  url = Url.create(url: params[:url], click_count: 0, user_id: session[:id])
   redirect "/s/#{url.id}"
   # have data
   # create url object
