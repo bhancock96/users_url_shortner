@@ -1,7 +1,7 @@
 
 get '/register' do
 
-erb :register
+  erb :register
 end
 
 post '/register' do
@@ -19,9 +19,26 @@ get '/login' do
   erb :login
 end
 
+post '/login' do
+  @user = User.authenticate(params[:email], params[:password])
+
+  if @user.nil?
+    redirect '/login'
+  else
+    session[:id] = @user.id
+    redirect "/users/#{@user.id}"
+  end
+end
+
 get '/users/:id' do
-  
+
   # display user infomration 
   # links to my link information pages
   erb :user
+end
+
+get '/logout' do
+  session[:id] = nil
+  
+  redirect '/login'
 end
